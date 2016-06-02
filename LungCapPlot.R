@@ -1,6 +1,6 @@
 rm(list=ls())
 
-LungCapData <- read.delim("~/RProgrammingCourse/LungCapData.txt")
+LungCapData <- read.delim("LungCapData.txt")
 
 attach(LungCapData)
 
