@@ -13,23 +13,23 @@ sql <- "SELECT
 RGN_CDESC,
 DIST_CDESC,
 PROD_DEPT_CDESC,
-PROD_SDSC, 
 STORE_CDESC,
 SUM( TY_SLS) as SALES
 FROM
-[mark_sandbox.DM_SALES_DAY_STORE_SKU_2WKSAMPLE_2]
+[mark_sandbox.DM_SALES_DAY_STORE_SKU_2WKSAMPLE]
 GROUP BY
 FISC_WK_CDESC,
 RGN_CDESC,
 DIST_CDESC,
 PROD_DEPT_CDESC,
-PROD_SDSC, 
 STORE_CDESC"
 
-SalesData <- query_exec(sql, project = project, destination_table = "LargeResults")
+SalesData <- query_exec(sql, project = project)
 
 attach(SalesData)
 
 boxplot(SALES ~ FISC_WK_CDESC, main="Sales", 
         ylab="Department Sales at Store", xlab="Fiscal Week",
         ylim=c(0,600000), las=1)
+
+hist(SALES, plot = TRUE, xlim=c(1,5000), breaks=10000)
